@@ -1,0 +1,12 @@
+.users {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 17rem;
+  height: 3rem;
+
+  margin: 2px;
+  background-color: #cc89ca;
+  list-style: none;
+  border-radius: 2px;
+}

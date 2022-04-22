@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useTransition } from "react";
+import "./App.css";
+import UserList from "./UserList";
+import { users } from "./Users";
 
+const list = users();
+const filterUsersList = (filteruser) => {
+  console.log(list);
+  if (!filteruser) {
+    return list;
+  }
+  return list.filter((user) => user.includes(filteruser));
+};
 function App() {
+  const [filterUser, setFilterUser] = useState("");
+  const [isPending, startTransition] = useTransition();
+  function filterInput(e) {
+    startTransition(() => {
+      setFilterUser(e.target.value);
+    });
+  }
+  const filterdUser = filterUsersList(filterUser);
+  console.log(filterdUser);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input type="text" onChange={filterInput} />
+      {isPending && <p>Updating List...</p>}
+      <UserList filterdUsers={filterdUser} />
     </div>
   );
 }
