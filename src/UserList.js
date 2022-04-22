@@ -12,11 +12,5 @@ const UserList = (props) => {
     </>
   );
 };
-/* const deferredProducts = useDeferredValue(products);
-  return (
-    <ul>
-      {deferredProducts.map((product) => (
-        <li>{product}</li>
-      ))}
-    </ul> */
+
 export default UserList;
